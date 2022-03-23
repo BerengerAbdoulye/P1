@@ -1,0 +1,19 @@
+<?php
+
+$jus_d_orange = $_POST['jus_d_orange'];
+
+// Create connection
+$conn = new mysqli('localhost', 'root','','test');
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}else{
+    $stmt = $conn->prepare("insert into entre(jus_d_orange) values(?)");
+    $stmt->bind_param("sssssi",$jus_d_orange);
+    $stmt->execute();
+    echo "Connected successfully";
+    $stmt->close();
+    $conn->close();
+}
+?>
